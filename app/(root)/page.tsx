@@ -1,11 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "../components/LoginForm";
+import SearchForm from "../components/SearchForm";
 
 
 
-export default function Home() {
-  console.log('syntax output, -- SERVER/CLIENT');
+export default async function Home({searchParams}:{
+  searchParams: Promise <{query?: string}>
+}) {
+
+
+const query = (await searchParams).query;
   
   return (
 
@@ -16,8 +21,17 @@ export default function Home() {
     <p className="sub-heading !max-w-3xl">
       Submit your ideas, Vote on Pitches
     </p>
+    <SearchForm query={query}/>
   </section>
-  <h1 className="heading">Home Page</h1>
+
+  <section className="section_container">
+    <p className="text-30-semibold">
+      {query ? `Search result for "${query}"` : 'All Startups'}
+    </p>
+
+    <ul className="mt-7 card_grid"></ul>
+  </section>
+
   </>
   );
 }
