@@ -10,7 +10,14 @@ export default function Home() {
   return (
 
   <>
-  <h1 className="flex flex-col justify-center items-center m-4">Home Page</h1>
+
+  <section className="pink_container">
+    <h1 className="heading"> Pitch your idea, <br /> Connect with us</h1>
+    <p className="sub-heading !max-w-3xl">
+      Submit your ideas, Vote on Pitches
+    </p>
+  </section>
+  <h1 className="heading">Home Page</h1>
   </>
   );
 }
