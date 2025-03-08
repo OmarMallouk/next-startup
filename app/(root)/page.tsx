@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "../components/LoginForm";
 import SearchForm from "../components/SearchForm";
+import StartupCard from "../components/StartupCard";
 
 
 
@@ -11,6 +12,16 @@ export default async function Home({searchParams}:{
 
 
 const query = (await searchParams).query;
+
+const posts = [{
+  _createdAt: new Date(),
+  views: 33,
+  author: {_id: 1, name:'Sami'},
+  _id: 1,
+  descritpion: 'wonderfull moon',
+  category: "Robots",
+  title: "We Robots",
+},];
   
   return (
 
@@ -29,7 +40,16 @@ const query = (await searchParams).query;
       {query ? `Search result for "${query}"` : 'All Startups'}
     </p>
 
-    <ul className="mt-7 card_grid"></ul>
+    <ul className="mt-7 card_grid">
+
+      {posts?.length > 0 ? (
+        posts.map((post:StartupCardType, number) =>(
+          <StartupCard key={post?._id} post={post}/>
+        )) ) : (
+          <p className="no-results">No startups found</p>
+        
+      )}
+    </ul>
   </section>
 
   </>
